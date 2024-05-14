@@ -1,0 +1,32 @@
+.header{
+display: grid;
+grid-template-columns: 0.2fr 0.8fr
+};
+
+.search{
+    padding-top: 5px;
+}
+
+.header-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-right: 5px;
+}
+
+.button-3{
+    border: 1px solid #662671;
+    padding: 7px 15px 7px 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #662671;
+    color: #FFFFFF;
+    cursor:pointer
+}

@@ -1,0 +1,46 @@
+.sidebarRows {
+   height: auto;
+   padding: 0;
+}
+
+.sidebarRows .row {
+   width: 250px;
+   height: 50px;
+   list-style-type: none;
+   margin: 0;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   color: #662671;
+   background-color: #F4F4F4;
+   font-family: Roboto, Arial, sans-serif;
+}
+
+.sidebarRows .row:hover {
+   cursor: pointer;
+   background-color: #FFF8B7;
+}
+
+.sidebarRows .row #iconContainer {
+   flex: 30%;
+   display: grid;
+   place-items: center;
+}
+
+.sidebarRows .row #titleContainer {
+   flex: 70%;
+}
+
+.sidebarRows .row #titleContainer h3 {
+   font-weight: lighter;
+   font-size: 18px;
+}
+
+#active {
+   background-color: #fffb00;
+}
+
+#active #iconContainer {
+   color: rgb(50, 68, 60);
+}

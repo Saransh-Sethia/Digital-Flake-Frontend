@@ -1,0 +1,19 @@
+.horizontal-navbar{
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: #662671;
+}
+
+/* .navbar-logo{
+width: 296px;
+height: 45.96px;
+top: 36px;
+left: 30px;
+gap: 0px;
+opacity: 0px;
+} */
