@@ -6,23 +6,27 @@ import categoryIcon from '../assets/category-2.png'
 import { useNavigate } from "react-router-dom";
 import TableComponent from "./Table";
 import { TextField } from "@mui/material";
-const Categories = ({categories, setCategories, deleteCategory}) => {
+import axios from 'axios';
+import config from "../../config";
+
+
+const Categories = ({categories, setCategories, deleteCategory, query, setQuery}) => {
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
 
-  const keys = ["title","status"];
+  
 
-  const search = (data) => {
-    const updatedData = data.filter((item) => (
-      keys.some((key) => item[key].toLowerCase().includes(query))
-    ));
-    setCategories(updatedData)
-  };
+  // const keys = ["title","status"];
 
+  // const search = (data) => {
+  //   const updatedData = data.filter((item) => (
+  //     keys.some((key) => item[key].toLowerCase().includes(query))
+  //   ));
+  //   setCategories(updatedData)
+  // };
 
-  useEffect(()=>{
-    search(categories);
-  },[query, categories])
+  // useEffect(()=>{
+  //   search(categories);
+  // },[query, categories])
   return (
     <>
       <HorizontalNavbar />

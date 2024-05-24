@@ -11,6 +11,7 @@ import Categories from './components/Categories/Categories';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import { useState, useEffect } from 'react';
 import config from './config';
+import axios from 'axios';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
   });
 
   const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState("")
 
   //Category API's
   const fetchCategories = async () => {
@@ -53,6 +55,47 @@ function App() {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  // const searchCategories = async (query) => {
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     const response = await fetch(`${config.endpoint}/categories/search?query=${query}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     if (!response.ok) throw new Error("Network response was not ok.");
+  //     if(!query){
+  //       fetchCategories()
+  //     }
+  //     const data = await response.json();
+  //     setCategories(data);
+  //   } catch (error) {
+  //     console.error("Failed to fetch tasks:", error);
+  //   }
+  // };;
+
+
+  const searchCategories = async(query) => {
+    try{
+      const token = localStorage.getItem('token');
+      if(token) {
+        const response = await axios.get(`${config.endpoint}?search=${query}`);
+        const data = response.data;
+        setCategories(data);
+      }else {
+        console.log('User not defined')
+      }
+
+    } catch(error){
+      throw error
+    }
+  }
+  useEffect(() => {
+    searchCategories(query)
+  },[query])
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
@@ -175,7 +218,7 @@ function App() {
     <Route path="/categoryInput" element={<CategoryInput formCategory={formCategory} setFormCategory={setFormCategory} handleCreateCategory={handleCreateCategory} />}/>
     <Route path="/productInput" element={<ProductInput formProduct={formProduct} setFormProduct={setFormProduct} handleCreateProduct={handleCreateProduct} />}/>
     <Route path="/api/products" element={<Products products={products} setProducts={setProducts} deleteProduct={deleteProduct} />}/>
-    <Route path="/api/categories" element={<Categories categories={categories} setCategories={setCategories} deleteCategory={deleteCategory} />}/>
+    <Route path="/api/categories" element={<Categories categories={categories} setCategories={setCategories} deleteCategory={deleteCategory} query={query} setQuery={setQuery} />}/>
     <Route path="/forgot-password" element={<ForgotPassword />}/>
     <Route path="/" element={<Home/>}/>
   </Routes>
