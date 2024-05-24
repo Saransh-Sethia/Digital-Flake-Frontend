@@ -56,46 +56,6 @@ function App() {
     fetchCategories();
   }, []);
 
-  // const searchCategories = async (query) => {
-  //   const token = localStorage.getItem("token");
-  //   try {
-  //     const response = await fetch(`${config.endpoint}/categories/search?query=${query}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     if (!response.ok) throw new Error("Network response was not ok.");
-  //     if(!query){
-  //       fetchCategories()
-  //     }
-  //     const data = await response.json();
-  //     setCategories(data);
-  //   } catch (error) {
-  //     console.error("Failed to fetch tasks:", error);
-  //   }
-  // };;
-
-
-  const searchCategories = async(query) => {
-    try{
-      const token = localStorage.getItem('token');
-      if(token) {
-        const response = await axios.get(`${config.endpoint}?search=${query}`);
-        const data = response.data;
-        setCategories(data);
-      }else {
-        console.log('User not defined')
-      }
-
-    } catch(error){
-      throw error
-    }
-  }
-  useEffect(() => {
-    searchCategories(query)
-  },[query])
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
@@ -115,7 +75,7 @@ function App() {
         description: "",
         status: "Active",
       });
-      fetchCategories(); // Refresh the tasks list to reflect the new task
+      fetchCategories(); 
     } catch (error) {
       console.error("Failed to create task:", error);
     }
@@ -132,7 +92,7 @@ function App() {
         },
       });
       if (!response.ok) throw new Error("Failed to delete task.");
-      fetchCategories(); // Refresh the tasks list to reflect changes
+      fetchCategories(); 
     } catch (error) {
       console.error("Failed to delete task:", error);
     }
@@ -176,14 +136,14 @@ function App() {
       if (!response.ok) {
         throw new Error("Failed to create task.")
       } else {
-        setFormCategory({
+        setFormProduct({
           category: "Milk",
           name:"",
           quantity:"",
           price:"",
           status:"Active"
         });
-        fetchProducts(); // Refresh the tasks list to reflect the new task
+        fetchProducts(); 
       }
 
     } catch (error) {
@@ -202,7 +162,7 @@ function App() {
         },
       });
       if (!response.ok) throw new Error("Failed to delete task.");
-      fetchProducts(); // Refresh the tasks list to reflect changes
+      fetchProducts(); 
     } catch (error) {
       console.error("Failed to delete task:", error);
     }
